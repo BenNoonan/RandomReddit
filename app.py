@@ -9,5 +9,7 @@ app.config['TEMPLATE_AUTO_RELOAD'] = True
 def random_reddit():
 	return render_template('index.html')
 
+#@app.route("/random")
+
 if __name__ == "__main__":
     app.run()
