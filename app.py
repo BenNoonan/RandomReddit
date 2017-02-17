@@ -8,7 +8,6 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['TEMPLATE_AUTO_RELOAD'] = True
 
-
 @app.route("/")
 def home():
 	return render_template('index.html')
@@ -21,8 +20,7 @@ def search():
 	post_title = reddit_data["data"]["children"][post_rand]["data"]["title"]
 	post_source =  reddit_data["data"]["children"][post_rand]["data"]["preview"]["images"][0]["source"]["url"]
 
-	return (post_title + "\n" + post_source)
-
+  return (post_title + "\n" + post_source)
 
 if __name__ == "__main__":
     app.run()
