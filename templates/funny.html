@@ -51,7 +51,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">r/Funny</a>
+                        <a href="#portfolio">{{subreddit}}</a>
                     </li>
                 </ul>
             </div>
@@ -61,9 +61,14 @@
     </nav>
 
     <section>
-        <div class="funny post">
+        <div class="post">
         <h2>{{data_title}}</h2>
-        <img class="static" align="middle" src="{{data_source}}">
+        {% if data_source %}
+            <img class="static" align="middle" src="{{data_source}}">
+        {% endif %}
+        {% if data_desc %}
+            <p>{{post_desc}}</p>
+        {% endif %}
         </div>
     </section>
 
