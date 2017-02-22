@@ -16,8 +16,8 @@ def home():
 def post_finder(subreddit):
 	r = requests.get('http://reddit.com/r/' + subreddit + '/top/.json', headers = {'User-agent': 'Chrome'})#.read().decode("utf-8")
 	reddit_data = json.loads(r.text)
+
 	max_post = len(reddit_data["data"]["children"])
-	print "max: " + str(max_post)
 	post_rand = randint(0, max_post)
 
 	post_title = reddit_data["data"]["children"][post_rand]["data"]["title"]
