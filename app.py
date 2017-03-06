@@ -37,12 +37,6 @@ def post_finder(subreddit):
 
 	return render_template('random.html', data_title = post_title, data_source = post_source, data_desc = post_desc
 	, data_sub = subreddit)
-	# except HTTPError:
-	# 	return render_template('404.html'), 404
-
-# @app.errorhandler(404)
-# def page_not_found(e):
-# 	return render_template('404.html'), 404
 
 if __name__ == "__main__":
     app.run()
