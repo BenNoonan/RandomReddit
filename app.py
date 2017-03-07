@@ -15,10 +15,9 @@ def home():
 
 @app.route("/subreddit/<subreddit>")
 def post_finder(subreddit):
-	#try:
 	r = requests.get('http://reddit.com/r/' + subreddit + '/top/.json', headers = {'User-agent': 'Chrome'})
 
-	if not r.status_code // 100 == 2:
+	if not r.status_code == 200:
 		return render_template('404.html'), 404
 
 	reddit_data = json.loads(r.text)
@@ -37,6 +36,11 @@ def post_finder(subreddit):
 
 	return render_template('random.html', data_title = post_title, data_source = post_source, data_desc = post_desc
 	, data_sub = subreddit)
+
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('404.html'), 404
+
 
 if __name__ == "__main__":
     app.run()
