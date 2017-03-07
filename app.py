@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort, redirect, url_for
 import requests
 from requests.exceptions import HTTPError
 import oauth2
@@ -16,11 +16,13 @@ def home():
 @app.route("/subreddit/<subreddit>")
 def post_finder(subreddit):
 	r = requests.get('http://reddit.com/r/' + subreddit + '/top/.json', headers = {'User-agent': 'Chrome'})
-
-	if not r.status_code == 200:
-		return render_template('404.html'), 404
-
 	reddit_data = json.loads(r.text)
+
+	if 'error' in reddit_data:
+		abort(404)
+	elif reddit_data["data"]["after"] == None:
+		abort(404)
+
 	max_post = len(reddit_data["data"]["children"])
 	post_rand = randint(0, max_post)
 
